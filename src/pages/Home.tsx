@@ -219,7 +219,7 @@ const Home: React.FC = () => {
               ))}
 
               <Link 
-                to="/why-us"
+                to="/what-makes-us-special"
                 className="cta-button px-8 py-3 rounded-full text-white font-medium inline-block"
               >
                 Discover More
