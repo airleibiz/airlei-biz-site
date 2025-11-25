@@ -4,11 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-  "build": "rd /s /q dist 2>nul || true && npm run build:client && copy package.json dist\\ && echo. > dist\\build.flag",
+  "dev": "vite",
+  "build": "vite build",
   "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
   "preview": "vite preview"
-  },
+}
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.9.2",
