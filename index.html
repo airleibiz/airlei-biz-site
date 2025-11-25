@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIRLÉI BIZ™ | Malaysia's First AICG Commercial Studio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: '#ffffff',
+              brand: '#6aa3ff',
+              'text-primary': '#000000',
+              'text-secondary': '#86868b',
+              'border': '#d2d2d7',
+            },
+            fontFamily: {
+              inter: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'sans-serif'],
+            },
+          },
+        }
+      }
+    </script>
+    
+    <!-- Custom Styles - Optimized for Final Design -->
+    <style type="text/tailwindcss">
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+      
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+        .cta-button {
+          background-color: #6aa3ff;
+          transition: all 0.2s ease;
+        }
+        .cta-button:hover {
+          background-color: #5a90e0;
+        }
+        .section-padding {
+          padding-top: clamp(4rem, 12vh, 10rem);
+          padding-bottom: clamp(4rem, 12vh, 10rem);
+        }
+        .apple-spacing {
+          letter-spacing: -0.022em;
+        }
+      }
+       
+      :root {
+        --bg: #ffffff;
+        --brand: #6aa3ff;
+        --text-primary: #000000;
+        --text-secondary: #86868b;
+        --border: #d2d2d7;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+       
+      body {
+        background-color: var(--bg);
+        color: var(--text-primary);
+        font-family: 'Inter', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'sans-serif';
+        letter-spacing: -0.011em;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-black min-h-screen font-inter">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

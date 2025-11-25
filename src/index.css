@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --brand: #6aa3ff;
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --border: #d2d2d7;
+  
+  font-family: 'Inter', '-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'sans-serif';
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+/* v5 Apple Minimalist Style */
+.container {
+  max-width: 940px; /* 桌面端左右对称留白≥15%屏幕宽度 */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Typography */
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.022em;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  letter-spacing: -0.022em;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  letter-spacing: -0.022em;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+/* Components */
+.cta-button {
+  background-color: var(--brand);
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #5a90e0;
+}
+
+.section-padding {
+  padding-top: clamp(4rem, 12vh, 10rem);
+  padding-bottom: clamp(4rem, 12vh, 10rem);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.apple-spacing {
+  letter-spacing: -0.022em;
+}

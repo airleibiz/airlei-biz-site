@@ -1,0 +1,13 @@
+# 忽略根目录的 videos 文件夹
+videos/
+# 忽略 public 目录下的 videos 文件夹
+public/videos/
+# 忽略所有后缀为 mp4 的视频文件（无论在哪个目录）
+*.mp4
+# 忽略其他视频格式（可选）
+*.avi
+*.mov
+*.webm
+# 忽略依赖文件夹和打包产物（必加）
+node_modules/
+dist/
