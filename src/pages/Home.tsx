@@ -250,25 +250,25 @@ const Home: React.FC = () => {
               {
                 title: 'FIRE 公益片',
                 category: '公益视频',
-                src: encodeURI('/videos/FIRE公益片.mp4'),
+                src: encodeURI('https://youtu.be/uEMyvax1kAw'),
                 orientation: 'landscape' as const,
               },
               {
                 title: 'NamasStay',
                 category: '旅游宣传',
-                src: encodeURI('/videos/NamasStay.mp4'),
+                src: encodeURI('https://youtube.com/shorts/uezxnGCS7kI'),
                 orientation: 'portrait' as const,
               },
               {
                 title: 'TOYOTA DREAM',
                 category: '汽车广告',
-                src: encodeURI('/videos/TOYOTA DREAM.mp4'),
+                src: encodeURI('https://youtu.be/zNCGtxbey50'),
                 orientation: 'landscape' as const,
               },
               {
                 title: '衣服广告',
                 category: '时尚宣传',
-                src: encodeURI('/videos/衣服广告.mp4'),
+                src: encodeURI('https://youtube.com/shorts/SgPVO0YB8_4'),
                 orientation: 'portrait' as const,
               },
               {
