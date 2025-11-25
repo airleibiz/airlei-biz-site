@@ -137,7 +137,7 @@ const Play: React.FC = () => {
             Be the first to access our AI tools and connect with other creators. Our Discord channel is already live!
           </p>
           <a 
-            href="#"
+            href="https://discord.gg/X3xYB9qs"
             className="cta-button px-8 py-3 rounded-full text-white font-medium inline-block"
           >
             <i className="fab fa-discord mr-2"></i> Join Discord
