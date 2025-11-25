@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   console.log('[api/contact] method =', req.method);
   console.log('[api/contact] raw body =', req.body);
 
+  // 只允许 POST
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
@@ -16,6 +17,7 @@ export default async function handler(req, res) {
   const { name, email, subject, message } = req.body || {};
   console.log('[api/contact] parsed =', { name, email, subject, message });
 
+  // 基础校验
   if (!name || !email || !message) {
     return res.status(400).json({
       error: 'Missing required fields',
@@ -41,14 +43,12 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log('[api/contact] sending to', process.env.CONTACT_TO);
+    console.log('[api/contact] sending to admin & user');
 
-    const out = await resend.emails.send({
-      // 先用 Resend 默认发件人，确保一定能发出去
+    // ① 发给你自己的通知邮件
+    const adminEmail = await resend.emails.send({
       from: 'AIRLEI Website <contact@airlei.com>',
-      // 🔴 调试第一步：这里可以直接先写死你的 Gmail
-      // to: 'airleibiz@gmail.com',
-      to: process.env.CONTACT_TO,
+      to: process.env.CONTACT_TO, // 你的接收邮箱（在 Vercel 环境变量里）
       reply_to: email,
       subject: subject?.trim()
         ? `[AIRLEI Contact] ${subject}`
@@ -56,8 +56,39 @@ export default async function handler(req, res) {
       text: `From: ${name} <${email}>\n\n${message}`,
     });
 
-    console.log('[api/contact] send result =', out);
-    return res.status(200).json({ ok: true, id: out?.data?.id || null });
+    // ② 自动回复给访客（失败不会影响整体成功）
+    let userEmail = null;
+    try {
+      userEmail = await resend.emails.send({
+        from: 'AIRLEI Website <contact@airlei.com>',
+        to: email, // 访客填写的邮箱
+        subject: 'We received your message - AIRLEI',
+        text: `Hi ${name || ''},
+
+Thank you for reaching out to AIRLEI.
+We have received your message and will get back to you as soon as possible.
+
+Your message:
+"${message}"
+
+Best regards,
+AIRLEI Biz`,
+      });
+    } catch (autoReplyErr) {
+      console.error('[api/contact] auto-reply failed =', autoReplyErr);
+      // 这里不抛出，让前端还是看到 success
+    }
+
+    console.log('[api/contact] send result =', {
+      adminId: adminEmail?.data?.id || null,
+      userId: userEmail?.data?.id || null,
+    });
+
+    return res.status(200).json({
+      ok: true,
+      adminId: adminEmail?.data?.id || null,
+      userId: userEmail?.data?.id || null,
+    });
   } catch (err) {
     console.error('[api/contact] send error =', err);
     return res.status(500).json({
@@ -66,5 +97,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
-
