@@ -245,39 +245,38 @@ const Home: React.FC = () => {
             // 统一预览比例：全部 16:9，避免横竖混排高度乱
             const featuredVideos = [
               {
-                title: 'FIRE 公益片',
-                category: '公益视频',
+                title: 'FIRE PUBLICITY FILM',
+                category: 'Publicity film',
                 thumbnail: '/images/FIRE.png',
                 videoUrl: 'https://www.youtube.com/watch?v=uEMyvax1kAw',
               },
               {
                 title: 'NamasStay',
-                category: '旅游宣传',
+                category: 'Business Concept',
                 thumbnail: '/images/NamasStay.png',
                 videoUrl: 'https://www.youtube.com/shorts/uezxnGCS7kI',
               },
               {
                 title: 'TOYOTA DREAM',
-                category: '汽车广告',
+                category: 'Commercial Ads',
                 thumbnail: '/images/TOYOTA COROLLA SUV DREAM.jpg',
                 videoUrl: 'https://www.youtube.com/watch?v=zNCGtxbey50',
               },
               {
-                title: '衣服广告',
-                category: '时尚宣传',
+                title: 'FASHION',
+                category: 'Product Shooting',
                 thumbnail: '/images/衣服广告.png',
                 videoUrl: 'https://www.youtube.com/shorts/SgPVO0YB8_4',
               },
               {
-                title: '赛博-先导苏醒',
-                category: '概念短片',
-                thumbnail: '/images/赛博-先导苏醒.png',
-                // 确保这两个 mp4 在 public/videos 下面
+                title: '孢生纪',
+                category: 'Animation',
+                thumbnail: '/images/cyberpunk.png',
                 videoUrl: '/videos/赛博-先导苏醒.mp4',
               },
               {
-                title: '转绘',
-                category: '艺术创作',
+                title: 'Transtyle Video',
+                category: 'Restyle art and language',
                 thumbnail: '/images/转绘.png',
                 videoUrl: '/videos/转绘.mp4',
               },
