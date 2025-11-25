@@ -26,43 +26,43 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'FIRE CHARITY',
       thumbnail: "/images/FIRE.png",
-      video: "https://youtu.be/embed/uEMyvax1kAw"
+      video: "https://youtu.be/uEMyvax1kAw"
     },
     {
       id: 2,
       title: 'TOYOTA COROLLA SUV DREAM',
       thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg",
-      video: "https://www.youtube.com/embed/zNCGtxbey50"
+      video: "https://youtu.be/zNCGtxbey50"
     },
     {
       id: 3,
       title: 'TOYOTA COROLLA SUV WITH THE SPECIAL MOM',
       thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png",
-      video: "https://www.youtube.com/embed/nPCBLkoECc0"
+      video: "https://youtu.be/nPCBLkoECc0"
     },
     {
       id: 4,
       title: '先导片',
       thumbnail: "/images/previsual.jpg",
-      video: "https://www.youtube.com/embed/AkAzFS6kx2A"
+      video: "https://youtu.be/AkAzFS6kx2A"
     },
     {
       id: 5,
       title: '咚咚秒送',
       thumbnail: "/images/dongdong.png",
-      video: "https://www.youtube.com/embed/rkncE0zcIWo"
+      video: "https://www.youtube.com/watch?v=rkncE0zcIWo"
     },
     {
       id: 6,
       title: '宣传片 international ver',
       thumbnail: "/images/international.png",
-      video: "https://www.youtube.com/embed/liaRdhyO_qI"
+      video: "https://www.youtube.com/watch?v=liaRdhyO_qI"
     },
     {
       id: 7,
       title: '油炸桧',
       thumbnail: "/images/油炸桧.png",
-      video: "https://www.youtube.com/embed/7cIkdwcjq4U"
+      video: "https://www.youtube.com/watch?v=7cIkdwcjq4U"
     }
   ];
 
@@ -72,19 +72,19 @@ const Portfolio: React.FC = () => {
     id: 1,
     title: 'AIRLEI AI STUDIO',
     thumbnail: "/images/AIRLEI AI STUDIO.png",
-    video: "https://drive.google.com/file/d/1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz/preview"
+    video: "https://youtube.com/shorts/JqpQLN-eWiQ?feature=share"
     },
     {
       id: 2,
       title: 'NamasStay',
       thumbnail: "/images/NamasStay.png",
-      video: "https://www.youtube.com/embed/uezxnGCS7kI"
+      video: "https://youtube.com/shorts/uezxnGCS7kI?feature=share"
     },
     {
       id: 3,
       title: '衣服广告',
       thumbnail: "/images/衣服广告.png",
-      video: "https://www.youtube.com/embed/SgPVO0YB8_4"
+      video: "https://youtube.com/shorts/SgPVO0YB8_4?feature=share"
     },
     {
       id: 4,
