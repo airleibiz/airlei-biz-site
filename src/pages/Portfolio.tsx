@@ -58,7 +58,7 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 4,
-      title: 'Previsualisation Video',
+      title: 'PRE-VISUALISATION FILM',
       thumbnail: "/images/previsual.jpg",
       video: "https://www.youtube.com/embed/AkAzFS6kx2A",
       type: 'youtube'
@@ -72,7 +72,7 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 6,
-      title: 'Beijing Central Axis - international ver',
+      title: 'BEIJING CENTRAL AXIS',
       thumbnail: "/images/international.png",
       video: "https://www.youtube.com/embed/liaRdhyO_qI",
       type: 'youtube'
