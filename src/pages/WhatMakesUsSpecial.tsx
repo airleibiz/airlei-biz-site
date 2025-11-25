@@ -175,26 +175,20 @@ const WhatMakesUsSpecial: React.FC = () => {
         >
           <h2 className="text-20px font-bold mb-12 text-center">What Our Clients Say</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 quote: 'Airlei AI Studio transformed our marketing strategy with their AI-powered content. The speed and quality are incredible!',
-                author: 'Sarah Lim',
-                position: 'Marketing Director, TechSonic',
-                avatar: 'https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=professional%20business%20woman%20portrait&sign=76f8518e05f80fbdd0aee41ab7bb29f4'
+                author: 'Xenia Fung',
+                position: 'FOUNDER . AICG Producer · Creative Technologist',
+                avatar: "/images/xenia profile.png"
               },
               {
                 quote: 'As Malaysia\'s first AICG studio, they bring cutting-edge technology and expertise that has helped our brand stand out.',
-                author: 'Michael Tan',
-                position: 'CEO, CreativeMinds',
-                avatar: 'https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=professional%20business%20man%20portrait&sign=497b65badfe7a6d7d7d4689b65ef8e7f'
+                author: 'Gary Lai',
+                position: 'CROSS-BORDER DIRECTOR',
+                avatar: "/images/gray profile.png"
               },
-              {
-                quote: 'The 72-hour delivery time is game-changing for our fast-paced industry. We can now respond to market trends instantly.',
-                author: 'Emily Wong',
-                position: 'Content Manager, MediaHub',
-                avatar: 'https://space.coze.cn/api/coze_space/gen_image?image_size=square&prompt=creative%20industry%20professional%20woman%20portrait&sign=59a20d7ae35cfb2a333c37a2d40c0f51'
-              }
             ].map((testimonial, index) => (
               <motion.div
                 key={index}
