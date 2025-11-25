@@ -23,75 +23,69 @@ const Portfolio: React.FC = () => {
 
   // 横屏
   const landscapeVideos: VideoItem[] = [
-    {
+  {
       id: 1,
       title: 'FIRE CHARITY',
-      thumbnail: "/images/FIRE.png", 
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1f698e5xzEZY93OSE-Bhcvh76wHRsllCp')
+      thumbnail: "/images/FIRE.png",
+      video: "https://www.youtube.com/embed/uEMyvax1kAw"
     },
     {
       id: 2,
       title: 'TOYOTA COROLLA SUV DREAM',
-      thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg", 
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1r7FIP7M58UeQdhu6atudGnrm5R8p_LCR')
+      thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg",
+      video: "https://www.youtube.com/embed/zNCGtxbey50"
     },
     {
       id: 3,
       title: 'TOYOTA COROLLA SUV WITH THE SPECIAL MOM',
-      thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png", 
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1F-U-eE7LM435HHyX3Q35H9BwUOQPhhL_')
+      thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png",
+      video: "https://www.youtube.com/embed/nPCBLkoECc0"
     },
     {
       id: 4,
       title: '先导片',
       thumbnail: "/images/previsual.jpg",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1RM0JihsgovK0jfDmDZ6LEykoWQUS1FAX')
+      video: "https://www.youtube.com/embed/AkAzFS6kx2A"
     },
     {
       id: 5,
       title: '咚咚秒送',
       thumbnail: "/images/dongdong.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1pAbfF_NEbnYudmeVxOn31dOVXgQclIov')
+      video: "https://www.youtube.com/embed/rkncE0zcIWo"
     },
     {
       id: 6,
       title: '宣传片 international ver',
       thumbnail: "/images/international.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1s-ei1H3uFO4elrtGuq929fpgAIWBCV2E')
+      video: "https://www.youtube.com/embed/liaRdhyO_qI"
     },
     {
       id: 7,
       title: '油炸桧',
       thumbnail: "/images/油炸桧.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1nAW_HKT1t4bf7ci-ewfu7Zu66oYYE2uJ')
-    },
-    {
-      id: 8,
-      title: '赛博-先导苏醒',
-      thumbnail: "/images/cyberpunk.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1pa2Y4psBX9LataxsRUnTSFoPljCx8x5x')
+      video: "https://www.youtube.com/embed/7cIkdwcjq4U"
     }
   ];
 
   // 竖屏
   const portraitVideos: VideoItem[] = [
     {
-      id: 1,
-      title: 'AIRLEI AI STUDIO',
-      thumbnail: "/images/AIRLEI AI STUDIO.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz')
+    id: 1,
+    title: 'AIRLEI AI STUDIO',
+    thumbnail: "/images/AIRLEI AI STUDIO.png",
+    video: "https://www.youtube.com/embed/JqpQLN-eWiQ"
     },
     {
       id: 2,
       title: 'NamasStay',
       thumbnail: "/images/NamasStay.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1jKowlEy2brifR8Gge6irKIjr-ygpY-LM')
+      video: "https://www.youtube.com/embed/uezxnGCS7kI"
     },
     {
       id: 3,
       title: '衣服广告',
       thumbnail: "/images/衣服广告.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1imXKRShlkKVKDNXJiToEs-3Zkcjx5rQU')
+      video: "https://www.youtube.com/embed/SgPVO0YB8_4"
     },
     {
       id: 4,
