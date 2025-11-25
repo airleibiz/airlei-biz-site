@@ -19,17 +19,18 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server config error' });
   }
 
-  try {
-    await resend.emails.send({
-      from: 'AIRLEI Website <onboarding@resend.dev>', // 先用默认发件人
-      to: process.env.CONTACT_TO,                     // ✅ 这里是“你真正要收信的邮箱”
-      reply_to: email,
-      subject:
-        subject && subject.trim()
-          ? `[AIRLEI Contact] ${subject}`
-          : '[AIRLEI Contact] New message from website',
-      text: `From: ${name} <${email}>\n\n${message}`,
-    });
+  await resend.emails.send({
+    from: 'AIRLEI Website <onboarding@resend.dev>',
+    // 先直接发到你的 Gmail，绕开 Cloudflare
+    to: 'airleibiz@gmail.com',
+    reply_to: email,
+    subject:
+      subject && subject.trim()
+        ? `[AIRLEI Contact] ${subject}`
+        : '[AIRLEI Contact] New message from website',
+    text: `From: ${name} <${email}>\n\n${message}`,
+  });
+
 
     console.log('[api/contact] email sent OK');
     return res.status(200).json({ ok: true });
@@ -38,3 +39,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Failed to send email' });
   }
 }
+
