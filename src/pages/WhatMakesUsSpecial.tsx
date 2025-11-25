@@ -173,18 +173,18 @@ const WhatMakesUsSpecial: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-20px font-bold mb-12 text-center">What Our Clients Say</h2>
+          <h2 className="text-20px font-bold mb-12 text-center">CORE MEMBERS </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                quote: 'Airlei AI Studio transformed our marketing strategy with their AI-powered content. The speed and quality are incredible!',
+                quote: 'Airlei AI Studio transformed marketing strategy with the AI-powered content.',
                 author: 'Xenia Fung',
                 position: 'FOUNDER . AICG PRODUCER',
                 avatar: "/images/xenia profile.png"
               },
               {
-                quote: 'As Malaysia\'s first AICG studio, they bring cutting-edge technology and expertise that has helped our brand stand out.',
+                quote: 'As Malaysia\'s first AICG studio, we bring cutting-edge technology and expertise that to help our clients' brand stand out.',
                 author: 'Gary Lai',
                 position: 'CROSS-BORDER DIRECTOR',
                 avatar: "/images/gary profile.jpg"
