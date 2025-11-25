@@ -11,44 +11,49 @@ const ContactUs: React.FC = () => {
 
   // 提交表单 → 调用 /api/contact
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
-    };
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      let result: any = null;
-      try {
-        result = await response.json();
-      } catch (e) {
-        // ignore
-      }
-
-      if (response.ok) {
-        alert('Message sent successfully!');
-        form.reset();
-      } else {
-        console.error('API error:', response.status, result);
-        alert('Failed to send: ' + (result?.error || 'Unknown error'));
-      }
-    } catch (err) {
-      console.error('Submit error:', err);
-      alert('Network error, please try later.');
-    }
+  e.preventDefault();
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+  const email = formData.get('email') as string;
+  // 新增邮箱格式验证
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address');
+    return;
+  }
+  const data = {
+    name: formData.get('name') as string,
+    email,
+    subject: formData.get('subject') as string,
+    message: formData.get('message') as string,
   };
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    let result: any = null;
+    try {
+      result = await response.json();
+    } catch (e) {
+      console.error('Failed to parse response:', e);
+      alert('Failed to send: Invalid response from server');
+      return;
+    }
+    // 不仅判断response.ok，还校验后端返回的邮件发送状态
+    if (response.ok && result?.status === 'email_sent') {
+      alert('Message sent successfully!');
+      form.reset();
+    } else {
+      console.error('API error:', response.status, result);
+      alert('Failed to send: ' + (result?.error || 'Unknown error'));
+    }
+  } catch (err) {
+    console.error('Submit error:', err);
+    alert('Network error, please try later.');
+  }
+};
 
   return (
     <div className="section-padding bg-white">
