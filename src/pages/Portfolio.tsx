@@ -6,7 +6,7 @@ type VideoItem = {
   id: number;
   title: string;
   thumbnail: string;
-  video: string; // 现在直接存 iframe 可用的链接（YouTube embed / Drive preview）
+  video: string; // 现在直接存 iframe 可用的链接（YouTube embed / Drive 预览 / 其它外链）
   type?: 'youtube' | 'drive';
 };
 
@@ -30,10 +30,10 @@ const getVideoType = (url: string): 'youtube' | 'drive' | 'unknown' => {
 const Portfolio: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState<{
     src: string;
-    type: 'youtube' | 'drive' | 'unknown';
+    type: 'youtube';
   } | null>(null);
 
-  // 横屏（全部改成 /embed/ 格式）
+  // 横屏（全部用 /embed/）
   const landscapeVideos: VideoItem[] = [
     {
       id: 1,
@@ -86,7 +86,7 @@ const Portfolio: React.FC = () => {
     }
   ];
 
-  // 竖屏（Shorts 也同样用 /embed/）
+  // 竖屏（Shorts 同样用 /embed/）
   const portraitVideos: VideoItem[] = [
     {
       id: 1,
@@ -113,7 +113,7 @@ const Portfolio: React.FC = () => {
       id: 4,
       title: '裤子B',
       thumbnail: "/images/裤子B.png",
-      // Google Drive 用 /preview + iframe
+      // 先保留 Drive：点击后新开标签页
       video: "https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/preview",
       type: 'drive'
     },
@@ -126,11 +126,21 @@ const Portfolio: React.FC = () => {
     }
   ];
 
-  // 点击缩略图 → 打开播放器
+  // 点击缩略图 → YouTube 走 Modal，Drive / 其它 → 新标签页
   const openPlayer = (video: string) => {
     const type = getVideoType(video);
-    setActiveVideo({ src: video, type });
+
+    if (type === 'youtube') {
+      setActiveVideo({ src: video, type: 'youtube' });
+      return;
+    }
+
+    // Drive 或 unknown：直接新标签页打开，不再 iframe（会被 CSP 拦）
+    if (typeof window !== 'undefined') {
+      window.open(video, '_blank', 'noopener,noreferrer');
+    }
   };
+
   const closePlayer = () => setActiveVideo(null);
 
   // 小工具：给 iframe 加 autoplay 参数（避免 ? / & 写错）
@@ -258,7 +268,7 @@ const Portfolio: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* 播放器 Modal：统一用 iframe（YouTube / Drive） */}
+      {/* 播放器 Modal：现在只给 YouTube 用，竖版也一样 */}
       <AnimatePresence>
         {activeVideo && (
           <motion.div
@@ -269,9 +279,7 @@ const Portfolio: React.FC = () => {
             onClick={closePlayer}
           >
             <motion.div
-              className={`w-full bg-white rounded-2xl overflow-hidden ${
-                activeVideo.type === 'youtube' ? 'max-w-4xl' : 'max-w-3xl'
-              }`}
+              className="w-full max-w-4xl bg-white rounded-2xl overflow-hidden"
               initial={{ scale: 0.98, y: 10, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.98, y: 10, opacity: 0 }}
@@ -289,31 +297,16 @@ const Portfolio: React.FC = () => {
                 </button>
               </div>
 
-              {activeVideo.type === 'youtube' ? (
-                <div className="aspect-video w-full bg-black">
-                  <iframe
-                    src={withAutoplay(activeVideo.src)}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    className="w-full h-full border-0"
-                  ></iframe>
-                </div>
-              ) : activeVideo.type === 'drive' ? (
-                <div className="w-full h-[60vh] bg-black">
-                  <iframe
-                    src={activeVideo.src}
-                    title="Google Drive video preview"
-                    allow="autoplay; encrypted-media"
-                    className="w-full h-full border-0"
-                  ></iframe>
-                </div>
-              ) : (
-                <div className="w-full h-[60vh] bg-black flex items-center justify-center text-white">
-                  <p>Unsupported video format</p>
-                </div>
-              )}
+              <div className="aspect-video w-full bg-black">
+                <iframe
+                  src={withAutoplay(activeVideo.src)}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  className="w-full h-full border-0"
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}
