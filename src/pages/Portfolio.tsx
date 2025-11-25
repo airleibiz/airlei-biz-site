@@ -260,7 +260,7 @@ const Portfolio: React.FC = () => {
             Ready to bring your ideas to life with our AI-powered content creation?
           </p>
           <a
-            href="/contact"
+            href="/ContactUs"
             className="px-8 py-3 rounded-full text-white font-medium inline-block bg-[#6aa3ff] hover:opacity-90 transition"
           >
             Get Started
