@@ -1,5 +1,4 @@
-// /api/contact.js  （注意一定在项目根目录的 api 文件夹里）
-// import { Resend } from 'resend';
+// api/contact.js
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -14,51 +13,54 @@ export default async function handler(req, res) {
   }
 
   const { name, email, subject, message } = req.body || {};
-  console.log('[api/contact] parsed body =', { name, email, subject, message });
+  console.log('[api/contact] parsed =', { name, email, subject, message });
 
   if (!name || !email || !message) {
-    console.log('[api/contact] missing fields', {
+    return res.status(400).json({
+      error: 'Missing required fields',
       hasName: !!name,
       hasEmail: !!email,
       hasMessage: !!message,
     });
-    return res
-      .status(400)
-      .json({ error: 'Missing required fields', hasName: !!name, hasEmail: !!email, hasMessage: !!message });
   }
 
-  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_TO) {
-    console.error('[api/contact] Missing env', {
-      hasApiKey: !!process.env.RESEND_API_KEY,
-      hasContactTo: !!process.env.CONTACT_TO,
-    });
-    return res.status(500).json({
-      error: 'Server config error',
-      hasApiKey: !!process.env.RESEND_API_KEY,
-      hasContactTo: !!process.env.CONTACT_TO,
-    });
+  const hasKey = !!process.env.RESEND_API_KEY;
+  const hasTo = !!process.env.CONTACT_TO;
+  console.log('[api/contact] env check =', {
+    hasKey,
+    hasTo,
+    keyPrefix: process.env.RESEND_API_KEY?.slice(0, 8) || 'NONE',
+    to: process.env.CONTACT_TO || 'NONE',
+  });
+
+  if (!hasKey || !hasTo) {
+    return res
+      .status(500)
+      .json({ error: 'Server config error', hasKey, hasTo });
   }
 
   try {
-    console.log('[api/contact] sending email to', process.env.CONTACT_TO);
+    console.log('[api/contact] sending to', process.env.CONTACT_TO);
 
-    await resend.emails.send({
-      from: 'AIRLEI Website <onboarding@resend.dev>', // 先用这个
-      to: 'airleibiz@gmail.com', // 先直接发你 gmail，绕开 Cloudflare
+    const out = await resend.emails.send({
+      // 先用 Resend 默认发件人，确保一定能发出去
+      from: 'AIRLEI Website <onboarding@resend.dev>',
+      // 🔴 调试第一步：这里可以直接先写死你的 Gmail
+      // to: 'airleibiz@gmail.com',
+      to: process.env.CONTACT_TO,
       reply_to: email,
-      subject:
-        subject && subject.trim()
-          ? `[AIRLEI Contact] ${subject}`
-          : '[AIRLEI Contact] New message from website',
+      subject: subject?.trim()
+        ? `[AIRLEI Contact] ${subject}`
+        : '[AIRLEI Contact] New message from website',
       text: `From: ${name} <${email}>\n\n${message}`,
     });
 
-    console.log('[api/contact] email sent OK');
-    return res.status(200).json({ ok: true });
+    console.log('[api/contact] send result =', out);
+    return res.status(200).json({ ok: true, id: out?.data?.id || null });
   } catch (err) {
-    console.error('[api/contact] send error:', err);
+    console.error('[api/contact] send error =', err);
     return res.status(500).json({
-      error: err?.message || 'Failed to send email',
+      error: err?.message || 'Failed to send',
       code: err?.code || null,
     });
   }
