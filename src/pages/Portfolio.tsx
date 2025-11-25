@@ -37,7 +37,7 @@ const Portfolio: React.FC = () => {
   const landscapeVideos: VideoItem[] = [
     {
       id: 1,
-      title: 'FIRE CHARITY',
+      title: 'FIRE PUBLICITY FILM',
       thumbnail: "/images/FIRE.png",
       video: "https://www.youtube.com/embed/uEMyvax1kAw",
       type: 'youtube'
@@ -58,7 +58,7 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 4,
-      title: '先导片',
+      title: 'Previsualisation Video',
       thumbnail: "/images/previsual.jpg",
       video: "https://www.youtube.com/embed/AkAzFS6kx2A",
       type: 'youtube'
@@ -72,14 +72,14 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 6,
-      title: '宣传片 international ver',
+      title: 'Beijing Central Axis - international ver',
       thumbnail: "/images/international.png",
       video: "https://www.youtube.com/embed/liaRdhyO_qI",
       type: 'youtube'
     },
     {
       id: 7,
-      title: '油炸桧',
+      title: 'THE ORIGIN OF YOUTIAO',
       thumbnail: "/images/油炸桧.png",
       video: "https://www.youtube.com/embed/7cIkdwcjq4U",
       type: 'youtube'
@@ -104,14 +104,14 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 3,
-      title: '衣服广告',
+      title: 'FASHION',
       thumbnail: "/images/衣服广告.png",
       video: "https://www.youtube.com/embed/SgPVO0YB8_4",
       type: 'youtube'
     },
     {
       id: 4,
-      title: '裤子B',
+      title: 'PRODUCT',
       thumbnail: "/images/裤子B.png",
       // 先保留 Drive：点击后新开标签页
       video: "https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/preview",
@@ -119,7 +119,7 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 5,
-      title: '转绘',
+      title: 'TRANSTYLE',
       thumbnail: "/images/转绘.png",
       video: "https://drive.google.com/file/d/1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs/preview",
       type: 'drive'
