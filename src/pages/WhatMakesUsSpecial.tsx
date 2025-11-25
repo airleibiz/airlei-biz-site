@@ -180,14 +180,14 @@ const WhatMakesUsSpecial: React.FC = () => {
               {
                 quote: 'Airlei AI Studio transformed our marketing strategy with their AI-powered content. The speed and quality are incredible!',
                 author: 'Xenia Fung',
-                position: 'FOUNDER . AICG Producer · Creative Technologist',
+                position: 'FOUNDER . AICG PRODUCER',
                 avatar: "/images/xenia profile.png"
               },
               {
                 quote: 'As Malaysia\'s first AICG studio, they bring cutting-edge technology and expertise that has helped our brand stand out.',
                 author: 'Gary Lai',
                 position: 'CROSS-BORDER DIRECTOR',
-                avatar: "/images/gray profile.png"
+                avatar: "/images/gray profile.jpg"
               },
             ].map((testimonial, index) => (
               <motion.div
