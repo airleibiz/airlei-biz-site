@@ -27,49 +27,49 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'FIRE CHARITY',
       thumbnail: "/images/FIRE.png", 
-      video: encodeURI('https://drive.google.com/uc?id=1f698e5xzEZY93OSE-Bhcvh76wHRsllCp')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1f698e5xzEZY93OSE-Bhcvh76wHRsllCp')
     },
     {
       id: 2,
       title: 'TOYOTA COROLLA SUV DREAM',
       thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg", 
-      video: encodeURI('https://drive.google.com/uc?id=1r7FIP7M58UeQdhu6atudGnrm5R8p_LCR')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1r7FIP7M58UeQdhu6atudGnrm5R8p_LCR')
     },
     {
       id: 3,
       title: 'TOYOTA COROLLA SUV WITH THE SPECIAL MOM',
       thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png", 
-      video: encodeURI('https://drive.google.com/uc?id=1F-U-eE7LM435HHyX3Q35H9BwUOQPhhL_')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1F-U-eE7LM435HHyX3Q35H9BwUOQPhhL_')
     },
     {
       id: 4,
       title: '先导片',
       thumbnail: "/images/previsual.jpg",
-      video: encodeURI('https://drive.google.com/uc?id=1RM0JihsgovK0jfDmDZ6LEykoWQUS1FAX')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1RM0JihsgovK0jfDmDZ6LEykoWQUS1FAX')
     },
     {
       id: 5,
       title: '咚咚秒送',
       thumbnail: "/images/dongdong.png",
-      video: encodeURI('https://drive.google.com/uc?id=1pAbfF_NEbnYudmeVxOn31dOVXgQclIov')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1pAbfF_NEbnYudmeVxOn31dOVXgQclIov')
     },
     {
       id: 6,
       title: '宣传片 international ver',
       thumbnail: "/images/international.png",
-      video: encodeURI('https://drive.google.com/uc?id=1s-ei1H3uFO4elrtGuq929fpgAIWBCV2E')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1s-ei1H3uFO4elrtGuq929fpgAIWBCV2E')
     },
     {
       id: 7,
       title: '油炸桧',
       thumbnail: "/images/油炸桧.png",
-      video: encodeURI('https://drive.google.com/uc?id=1nAW_HKT1t4bf7ci-ewfu7Zu66oYYE2uJ')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1nAW_HKT1t4bf7ci-ewfu7Zu66oYYE2uJ')
     },
     {
       id: 8,
       title: '赛博-先导苏醒',
       thumbnail: "/images/cyberpunk.png",
-      video: encodeURI('https://drive.google.com/uc?id=1pa2Y4psBX9LataxsRUnTSFoPljCx8x5x')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1pa2Y4psBX9LataxsRUnTSFoPljCx8x5x')
     }
   ];
 
@@ -79,31 +79,31 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'AIRLEI AI STUDIO',
       thumbnail: "/images/AIRLEI AI STUDIO.png",
-      video: encodeURI('https://drive.google.com/uc?id=1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz')
     },
     {
       id: 2,
       title: 'NamasStay',
       thumbnail: "/images/NamasStay.png",
-      video: encodeURI('https://drive.google.com/uc?id=1jKowlEy2brifR8Gge6irKIjr-ygpY-LM')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1jKowlEy2brifR8Gge6irKIjr-ygpY-LM')
     },
     {
       id: 3,
       title: '衣服广告',
       thumbnail: "/images/衣服广告.png",
-      video: encodeURI('https://drive.google.com/uc?id=1imXKRShlkKVKDNXJiToEs-3Zkcjx5rQU')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1imXKRShlkKVKDNXJiToEs-3Zkcjx5rQU')
     },
     {
       id: 4,
       title: '裤子B',
       thumbnail: "/images/裤子B.png",
-      video: encodeURI('https://drive.google.com/uc?id=1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU')
     },
     {
       id: 5,
       title: '转绘',
       thumbnail: "/images/转绘.png",
-      video: encodeURI('https://drive.google.com/uc?id=1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs')
+      video: encodeURI('https://drive.google.com/uc?export=download&id=1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs')
     }
   ];
 
