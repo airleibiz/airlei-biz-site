@@ -231,7 +231,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Portfolio Preview */}
+            {/* Portfolio Preview */}
       <section className="py-24">
         <div className="container mx-auto">
           <div className="text-center mb-20">
@@ -241,48 +241,48 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* 预览视频数据：改成缩略图，不再用 <video src="YouTube 链接"> */}
           {(() => {
+            // 统一预览比例：全部 16:9，避免横竖混排高度乱
             const featuredVideos = [
               {
                 title: 'FIRE 公益片',
                 category: '公益视频',
                 thumbnail: '/images/FIRE.png',
-                orientation: 'landscape' as const,
+                videoUrl: 'https://www.youtube.com/watch?v=uEMyvax1kAw',
               },
               {
                 title: 'NamasStay',
                 category: '旅游宣传',
                 thumbnail: '/images/NamasStay.png',
-                orientation: 'portrait' as const,
+                videoUrl: 'https://www.youtube.com/shorts/uezxnGCS7kI',
               },
               {
                 title: 'TOYOTA DREAM',
                 category: '汽车广告',
                 thumbnail: '/images/TOYOTA COROLLA SUV DREAM.jpg',
-                orientation: 'landscape' as const,
+                videoUrl: 'https://www.youtube.com/watch?v=zNCGtxbey50',
               },
               {
                 title: '衣服广告',
                 category: '时尚宣传',
                 thumbnail: '/images/衣服广告.png',
-                orientation: 'portrait' as const,
+                videoUrl: 'https://www.youtube.com/shorts/SgPVO0YB8_4',
               },
               {
                 title: '赛博-先导苏醒',
                 category: '概念短片',
                 thumbnail: '/images/赛博-先导苏醒.png',
-                orientation: 'landscape' as const,
+                // 确保这两个 mp4 在 public/videos 下面
+                videoUrl: '/videos/赛博-先导苏醒.mp4',
               },
               {
                 title: '转绘',
                 category: '艺术创作',
                 thumbnail: '/images/转绘.png',
-                orientation: 'portrait' as const,
+                videoUrl: '/videos/转绘.mp4',
               },
             ];
 
-            // 预览卡片：用图片做封面，点击跳到 /portfolio
             return (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {featuredVideos.map((v, idx) => (
@@ -294,14 +294,14 @@ const Home: React.FC = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    onClick={() => { window.location.href = '/portfolio'; }}
+                    onClick={() => {
+                      if (typeof window !== 'undefined') {
+                        window.open(v.videoUrl, '_blank', 'noopener,noreferrer');
+                      }
+                    }}
                   >
-                    <div
-                      className={[
-                        'bg-white border border-[#d2d2d7] overflow-hidden',
-                        v.orientation === 'portrait' ? 'aspect-[9/16]' : 'aspect-video',
-                      ].join(' ')}
-                    >
+                    {/* 统一 16:9 比例的卡片 */}
+                    <div className="bg-white border border-[#d2d2d7] overflow-hidden aspect-video">
                       <img
                         src={v.thumbnail}
                         alt={v.title}
@@ -309,8 +309,8 @@ const Home: React.FC = () => {
                       />
                     </div>
 
-                    {/* 渐变与文案 */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80"></div>
+                    {/* 渐变与文字 */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
                     <div className="pointer-events-none absolute bottom-0 left-0 p-6">
                       <span className="inline-block px-3 py-1 rounded-full bg-[#6aa3ff]/20 text-white text-xs font-medium mb-2">
                         {v.category}
@@ -318,7 +318,7 @@ const Home: React.FC = () => {
                       <h3 className="text-xl font-bold text-white">{v.title}</h3>
                     </div>
 
-                    {/* 悬停播放指示（play icon） */}
+                    {/* 悬停 Play 图标 */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="w-14 h-14 rounded-full bg-white/85 flex items-center justify-center">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -339,6 +339,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-24 bg-[#f9f9f9]">
