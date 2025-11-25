@@ -6,8 +6,8 @@ type VideoItem = {
   id: number;
   title: string;
   thumbnail: string;
-  video: string; // YouTube链接 或 Google Drive直链（已encode）
-  type?: 'youtube' | 'drive'; // 新增类型标识，自动识别可省略，这里手动标注更清晰
+  video: string; // 现在直接存 iframe 可用的链接（YouTube embed / Drive preview）
+  type?: 'youtube' | 'drive';
 };
 
 // 动画
@@ -16,16 +16,8 @@ const fadeIn = {
   visible: { opacity: 1, y: 0 }
 };
 
-// 工具函数：解析YouTube视频ID
-const getYouTubeVideoId = (url: string) => {
-  // 匹配普通YouTube链接和Shorts链接
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11) ? match[2] : null;
-};
-
 // 工具函数：判断链接类型
-const getVideoType = (url: string) => {
+const getVideoType = (url: string): 'youtube' | 'drive' | 'unknown' => {
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
     return 'youtube';
   }
@@ -36,96 +28,100 @@ const getVideoType = (url: string) => {
 };
 
 const Portfolio: React.FC = () => {
-  const [activeVideo, setActiveVideo] = useState<{ src: string; type: string } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{
+    src: string;
+    type: 'youtube' | 'drive' | 'unknown';
+  } | null>(null);
 
-  // 横屏
+  // 横屏（全部改成 /embed/ 格式）
   const landscapeVideos: VideoItem[] = [
     {
       id: 1,
       title: 'FIRE CHARITY',
       thumbnail: "/images/FIRE.png",
-      video: "https://youtu.be/uEMyvax1kAw",
+      video: "https://www.youtube.com/embed/uEMyvax1kAw",
       type: 'youtube'
     },
     {
       id: 2,
       title: 'TOYOTA COROLLA SUV DREAM',
       thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg",
-      video: "https://youtu.be/zNCGtxbey50",
+      video: "https://www.youtube.com/embed/zNCGtxbey50",
       type: 'youtube'
     },
     {
       id: 3,
       title: 'TOYOTA COROLLA SUV WITH THE SPECIAL MOM',
       thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png",
-      video: "https://youtu.be/nPCBLkoECc0",
+      video: "https://www.youtube.com/embed/nPCBLkoECc0",
       type: 'youtube'
     },
     {
       id: 4,
       title: '先导片',
       thumbnail: "/images/previsual.jpg",
-      video: "https://youtu.be/AkAzFS6kx2A",
+      video: "https://www.youtube.com/embed/AkAzFS6kx2A",
       type: 'youtube'
     },
     {
       id: 5,
       title: '咚咚秒送',
       thumbnail: "/images/dongdong.png",
-      video: "https://www.youtube.com/watch?v=rkncE0zcIWo",
+      video: "https://www.youtube.com/embed/rkncE0zcIWo",
       type: 'youtube'
     },
     {
       id: 6,
       title: '宣传片 international ver',
       thumbnail: "/images/international.png",
-      video: "https://www.youtube.com/watch?v=liaRdhyO_qI",
+      video: "https://www.youtube.com/embed/liaRdhyO_qI",
       type: 'youtube'
     },
     {
       id: 7,
       title: '油炸桧',
       thumbnail: "/images/油炸桧.png",
-      video: "https://www.youtube.com/watch?v=7cIkdwcjq4U",
+      video: "https://www.youtube.com/embed/7cIkdwcjq4U",
       type: 'youtube'
     }
   ];
 
-  // 竖屏
+  // 竖屏（Shorts 也同样用 /embed/）
   const portraitVideos: VideoItem[] = [
     {
       id: 1,
       title: 'AIRLEI AI STUDIO',
       thumbnail: "/images/AIRLEI AI STUDIO.png",
-      video: "https://youtube.com/shorts/JqpQLN-eWiQ?feature=share",
+      video: "https://www.youtube.com/embed/JqpQLN-eWiQ",
       type: 'youtube'
     },
     {
       id: 2,
       title: 'NamasStay',
       thumbnail: "/images/NamasStay.png",
-      video: "https://youtube.com/shorts/uezxnGCS7kI?feature=share",
+      video: "https://www.youtube.com/embed/uezxnGCS7kI",
       type: 'youtube'
     },
     {
       id: 3,
       title: '衣服广告',
       thumbnail: "/images/衣服广告.png",
-      video: "https://youtube.com/shorts/SgPVO0YB8_4?feature=share",
+      video: "https://www.youtube.com/embed/SgPVO0YB8_4",
       type: 'youtube'
     },
     {
       id: 4,
       title: '裤子B',
       thumbnail: "/images/裤子B.png",
-      video: encodeURI('https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/view?usp=sharing'),
+      // Google Drive 用 /preview + iframe
+      video: "https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/preview",
       type: 'drive'
     },
     {
       id: 5,
       title: '转绘',
       thumbnail: "/images/转绘.png",
-      video: encodeURI('https://drive.google.com/file/d/1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs/view?usp=sharing'),
+      video: "https://drive.google.com/file/d/1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs/preview",
       type: 'drive'
     }
   ];
@@ -136,6 +132,10 @@ const Portfolio: React.FC = () => {
     setActiveVideo({ src: video, type });
   };
   const closePlayer = () => setActiveVideo(null);
+
+  // 小工具：给 iframe 加 autoplay 参数（避免 ? / & 写错）
+  const withAutoplay = (url: string) =>
+    `${url}${url.includes('?') ? '&' : '?'}autoplay=1`;
 
   return (
     <div className="section-padding bg-white">
@@ -258,7 +258,7 @@ const Portfolio: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* 优化后的播放器 Modal：兼容YouTube和Drive */}
+      {/* 播放器 Modal：统一用 iframe（YouTube / Drive） */}
       <AnimatePresence>
         {activeVideo && (
           <motion.div
@@ -269,7 +269,7 @@ const Portfolio: React.FC = () => {
             onClick={closePlayer}
           >
             <motion.div
-              className={`w-full max-w-5xl bg-white rounded-2xl overflow-hidden ${
+              className={`w-full bg-white rounded-2xl overflow-hidden ${
                 activeVideo.type === 'youtube' ? 'max-w-4xl' : 'max-w-3xl'
               }`}
               initial={{ scale: 0.98, y: 10, opacity: 0 }}
@@ -288,28 +288,27 @@ const Portfolio: React.FC = () => {
                   </svg>
                 </button>
               </div>
-              
-              {/* 区分YouTube和Drive视频渲染 */}
+
               {activeVideo.type === 'youtube' ? (
                 <div className="aspect-video w-full bg-black">
                   <iframe
-                    width="100%"
-                    height="100%"
-                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(activeVideo.src)}?autoplay=1`}
+                    src={withAutoplay(activeVideo.src)}
                     title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    className="w-full h-full"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="w-full h-full border-0"
                   ></iframe>
                 </div>
               ) : activeVideo.type === 'drive' ? (
-                <video
-                  src={activeVideo.src}
-                  controls
-                  autoPlay
-                  className="w-full h-[60vh] object-contain bg-black"
-                />
+                <div className="w-full h-[60vh] bg-black">
+                  <iframe
+                    src={activeVideo.src}
+                    title="Google Drive video preview"
+                    allow="autoplay; encrypted-media"
+                    className="w-full h-full border-0"
+                  ></iframe>
+                </div>
               ) : (
                 <div className="w-full h-[60vh] bg-black flex items-center justify-center text-white">
                   <p>Unsupported video format</p>
