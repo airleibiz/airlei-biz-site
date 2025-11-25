@@ -26,7 +26,7 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'FIRE CHARITY',
       thumbnail: "/images/FIRE.png",
-      video: "https://youtu.be/uEMyvax1kAw"
+      video: "https://youtu.be/embed/uEMyvax1kAw"
     },
     {
       id: 2,
