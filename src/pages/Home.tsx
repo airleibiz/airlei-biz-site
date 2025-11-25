@@ -264,13 +264,11 @@ const Home: React.FC = () => {
           </div>
 
           {(() => {
-            // 统一预览比例：全部 16:9，名字按你最新这版
             const featuredVideos = [
               {
                 title: 'FIRE PUBLICITY FILM',
                 category: 'Publicity film',
                 thumbnail: '/images/FIRE.png',
-                // 用 embed，方便 iframe
                 videoUrl: 'https://www.youtube.com/embed/uEMyvax1kAw',
               },
               {
@@ -339,3 +337,121 @@ const Home: React.FC = () => {
                     {/* 悬停 Play 图标 */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="w-14 h-14 rounded-full bg-white/85 flex items-center justify-center">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                          <path d="M8 5v14l11-7L8 5z" fill="#6aa3ff" />
+                        </svg>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            );
+          })()}
+
+          <div className="text-center mt-12">
+            <Link to="/portfolio" className="cta-button px-8 py-3 rounded-full text-white font-medium">
+              View All Projects
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-[#f9f9f9]">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-24px font-bold mb-6 text-[#1d1d1f]">
+                Ready to Transform Your Ideas with AI?
+              </h2>
+              <p className="text-[#86868b] mb-10">
+                Join us in the future of content creation. Our AI-powered tools help you create stunning visual content faster and more efficiently.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Link 
+                  to="/contact-us"
+                  className="cta-button px-8 py-3 rounded-full text-white font-medium"
+                >
+                  Get Started
+                </Link>
+                <Link 
+                  to="/play"
+                  className="px-8 py-3 rounded-full bg-white border border-[#d2d2d7] text-[#1d1d1f] font-medium hover:bg-[#f5f5f7] transition-colors"
+                >
+                  Explore AI Tools
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 播放器 Modal：和 portfolio 一样的弹窗 */}
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeVideo}
+          >
+            <motion.div
+              className="w-full max-w-4xl bg-white rounded-2xl overflow-hidden"
+              initial={{ scale: 0.98, y: 10, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.98, y: 10, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-end p-2">
+                <button
+                  className="h-9 w-9 rounded-full hover:bg-black/5 flex items-center justify-center"
+                  onClick={closeVideo}
+                  aria-label="Close video"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 6L6 18M6 6l12 12"
+                      stroke="#1d1d1f"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {activeVideo.type === 'youtube' ? (
+                <div className="aspect-video w-full bg-black">
+                  <iframe
+                    src={withAutoplay(activeVideo.src)}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="w-full h-full border-0"
+                  />
+                </div>
+              ) : (
+                <div className="w-full bg-black flex items-center justify-center">
+                  <video
+                    src={activeVideo.src}
+                    controls
+                    autoPlay
+                    className="w-full max-h-[70vh] object-contain bg-black"
+                  />
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default Home;
