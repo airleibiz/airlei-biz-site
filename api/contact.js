@@ -1,9 +1,9 @@
-// /api/contact.js —— 跑在 Vercel 上的 Serverless Function
-const { Resend } = require('resend');
+// /api/contact.js —— Vercel Serverless Function (ESM 版本)
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // 只允许 POST
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -25,10 +25,9 @@ module.exports = async (req, res) => {
 
   try {
     await resend.emails.send({
-      // 这里用 Resend 默认给的发件人就行，后面想玩高级的再改
       from: 'AIRLEI Website <onboarding@resend.dev>',
-      to: process.env.CONTACT_TO, // 例如 contact@airlei.com
-      reply_to: email,            // 你在 Gmail 里点回复就回到对方邮箱
+      to: process.env.CONTACT_TO,   // e.g. contact@airlei.com
+      reply_to: email,              // 你在邮箱里点“回复”就会回到用户邮箱
       subject:
         subject && subject.trim()
           ? `[AIRLEI Contact] ${subject}`
@@ -42,4 +41,4 @@ module.exports = async (req, res) => {
     console.error('[api/contact] send error:', err);
     return res.status(500).json({ error: 'Failed to send email' });
   }
-};
+}
