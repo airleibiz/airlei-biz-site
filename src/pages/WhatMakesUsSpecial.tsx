@@ -187,7 +187,7 @@ const WhatMakesUsSpecial: React.FC = () => {
                 quote: 'As Malaysia\'s first AICG studio, they bring cutting-edge technology and expertise that has helped our brand stand out.',
                 author: 'Gary Lai',
                 position: 'CROSS-BORDER DIRECTOR',
-                avatar: "/images/gray profile.jpg"
+                avatar: "/images/gary profile.jpg"
               },
             ].map((testimonial, index) => (
               <motion.div
