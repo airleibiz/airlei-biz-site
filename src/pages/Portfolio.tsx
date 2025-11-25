@@ -1,16 +1,15 @@
 // AIRLÉI BIZ™ Portfolio Component v5.0 - Apple Minimalist Style (fixed)
-// - 本地视频：放在项目根目录 /videos/ 下，使用绝对路径 /videos/xxx.mp4
-// - 中文文件名：用 encodeURI() 包一层，避免“曲线/波浪线”与编码问题
+// - 改用Google Drive直链播放视频，已处理编码问题
+// - 直链格式：https://drive.google.com/uc?id=文件ID
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
 
 type VideoItem = {
   id: number;
   title: string;
   thumbnail: string;
-  video: string; // 已 encode 的绝对路径
+  video: string; // Google Drive直链（已encode）
 };
 
 // 动画
@@ -28,49 +27,49 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'FIRE CHARITY',
       thumbnail: "/images/FIRE.png", 
-      video: encodeURI('/videos/FIRE公益片.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1f698e5xzEZY93OSE-Bhcvh76wHRsllCp')
     },
     {
       id: 2,
       title: 'TOYOTA COROLLA SUV DREAM',
       thumbnail: "/images/TOYOTA COROLLA SUV DREAM.jpg", 
-      video: encodeURI('/videos/TOYOTA DREAM.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1r7FIP7M58UeQdhu6atudGnrm5R8p_LCR')
     },
     {
       id: 3,
       title: 'TOYOTA COROLLA SUV WITH THE SPECIAL MOM',
       thumbnail: "/images/TOYOTA WITH THE SPECIAL MOM.png", 
-      video: encodeURI('/videos/TOYOTA WITH THE SPECIAL MOM.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1F-U-eE7LM435HHyX3Q35H9BwUOQPhhL_')
     },
     {
       id: 4,
       title: '先导片',
       thumbnail: "/images/previsual.jpg",
-      video: encodeURI('/videos/先导片.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1RM0JihsgovK0jfDmDZ6LEykoWQUS1FAX')
     },
     {
       id: 5,
       title: '咚咚秒送',
       thumbnail: "/images/dongdong.png",
-      video: encodeURI('/videos/咚咚秒送.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1pAbfF_NEbnYudmeVxOn31dOVXgQclIov')
     },
     {
       id: 6,
       title: '宣传片 international ver',
       thumbnail: "/images/international.png",
-      video: encodeURI('/videos/宣传片 international ver.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1s-ei1H3uFO4elrtGuq929fpgAIWBCV2E')
     },
     {
       id: 7,
       title: '油炸桧',
       thumbnail: "/images/油炸桧.png",
-      video: encodeURI('/videos/油炸桧.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1nAW_HKT1t4bf7ci-ewfu7Zu66oYYE2uJ')
     },
     {
       id: 8,
       title: '赛博-先导苏醒',
       thumbnail: "/images/cyberpunk.png",
-      video: encodeURI('/videos/赛博-先导苏醒.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1pa2Y4psBX9LataxsRUnTSFoPljCx8x5x')
     }
   ];
 
@@ -80,31 +79,31 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'AIRLEI AI STUDIO',
       thumbnail: "/images/AIRLEI AI STUDIO.png",
-      video: encodeURI('/videos/AIRLEI AI STUDIO.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz')
     },
     {
       id: 2,
       title: 'NamasStay',
       thumbnail: "/images/NamasStay.png",
-      video: encodeURI('/videos/NamasStay.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1jKowlEy2brifR8Gge6irKIjr-ygpY-LM')
     },
     {
       id: 3,
       title: '衣服广告',
       thumbnail: "/images/衣服广告.png",
-      video: encodeURI('/videos/衣服广告.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1imXKRShlkKVKDNXJiToEs-3Zkcjx5rQU')
     },
     {
       id: 4,
       title: '裤子B',
       thumbnail: "/images/裤子B.png",
-      video: encodeURI('/videos/裤子B.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU')
     },
     {
       id: 5,
       title: '转绘',
       thumbnail: "/images/转绘.png",
-      video: encodeURI('/videos/转绘.mp4')
+      video: encodeURI('https://drive.google.com/uc?id=1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs')
     }
   ];
 
