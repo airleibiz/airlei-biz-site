@@ -118,14 +118,14 @@ const Portfolio: React.FC = () => {
       id: 4,
       title: '裤子B',
       thumbnail: "/images/裤子B.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU'),
+      video: encodeURI('https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/view?usp=sharing'),
       type: 'drive'
     },
     {
       id: 5,
       title: '转绘',
       thumbnail: "/images/转绘.png",
-      video: encodeURI('https://drive.google.com/uc?export=download&id=1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs'),
+      video: encodeURI('https://drive.google.com/file/d/1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs/view?usp=sharing'),
       type: 'drive'
     }
   ];
