@@ -30,11 +30,19 @@ const ContactUs: React.FC = () => {
         body: JSON.stringify(data),
       });
 
+      let result: any = null;
+      try {
+        result = await response.json();
+      } catch (e) {
+        // ignore
+      }
+
       if (response.ok) {
         alert('Message sent successfully!');
         form.reset();
       } else {
-        alert('Failed to send, please try again.');
+        console.error('API error:', response.status, result);
+        alert('Failed to send: ' + (result?.error || 'Unknown error'));
       }
     } catch (err) {
       console.error('Submit error:', err);
