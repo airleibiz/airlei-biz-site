@@ -1,51 +1,48 @@
-// api/contact.js
-const nodemailer = require('nodemailer');
+// /api/contact.js  —— 运行在 Vercel Serverless Function 上
+import { Resend } from 'resend';
 
-module.exports = async (req, res) => {
-  console.log('[/api/contact] invoked, method =', req.method);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+/**
+ * Vercel Node / Edge Function handler
+ */
+export default async function handler(req, res) {
+  // 只允许 POST
   if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST']);
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { name, email, subject, message } = req.body || {};
-  console.log('[/api/contact] body =', req.body);
 
+  // 简单校验
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
-    console.error('MAIL_USER or MAIL_PASS is missing in environment variables');
-    return res
-      .status(500)
-      .json({ error: 'Mail config not set on server (MAIL_USER / MAIL_PASS)' });
+  if (!process.env.RESEND_API_KEY || !process.env.CONTACT_TO) {
+    console.error('[api/contact] Missing RESEND_API_KEY or CONTACT_TO');
+    return res.status(500).json({ error: 'Server config error' });
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
-
-    console.log('[/api/contact] transporter created, sending mail...');
-
-    await transporter.sendMail({
-      from: `"AIRLÉI Website" <${process.env.MAIL_USER}>`,
-      to: 'airleibiz@gmail.com',
-      subject: subject ? `[AIRLÉI Contact] ${subject}` : '[AIRLÉI Contact] New message',
+    // 发送邮件
+    await resend.emails.send({
+      // from 必须是 Resend 允许的发件人：
+      // 刚注册时可以用默认的这个地址
+      from: 'AIRLEI Website <onboarding@resend.dev>',
+      to: process.env.CONTACT_TO,
+      reply_to: email, // 你方便直接点“回复”回到对方邮箱
+      subject: subject && subject.trim()
+        ? `[AIRLEI Contact] ${subject}`
+        : '[AIRLEI Contact] New message from website',
       text: `From: ${name} <${email}>\n\n${message}`,
     });
 
-    console.log('[/api/contact] mail sent OK');
+    console.log('[api/contact] email sent OK');
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('[/api/contact] sendMail error:', err);
-    return res
-      .status(500)
-      .json({ error: err.message || 'Failed to send email (server error)' });
+    console.error('[api/contact] send error:', err);
+    return res.status(500).json({ error: 'Failed to send email' });
   }
-};
+}
