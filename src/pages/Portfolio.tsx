@@ -1,6 +1,5 @@
-// AIRLÉI BIZ™ Portfolio Component v5.0 - Apple Minimalist Style (fixed)
-// - 改用Google Drive直链播放视频，已处理编码问题
-// - 直链格式：https://drive.google.com/uc?id=文件ID
+// AIRLÉI BIZ™ Portfolio Component - Apple Minimalist Style
+
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
