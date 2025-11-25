@@ -2,6 +2,7 @@
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+console.log('[env check]', process.env.RESEND_API_KEY ? 'key ok' : 'key missing');
 
 export default async function handler(req, res) {
   console.log('[api/contact] method =', req.method);
@@ -44,10 +45,10 @@ export default async function handler(req, res) {
 
     const out = await resend.emails.send({
       // 先用 Resend 默认发件人，确保一定能发出去
-      from: 'AIRLEI Website <onboarding@resend.dev>',
+      from: 'AIRLEI Website <contact@airlei.com>',
       // 🔴 调试第一步：这里可以直接先写死你的 Gmail
-      // to: 'airleibiz@gmail.com',
-      to: process.env.CONTACT_TO,
+      to: 'airleibiz@gmail.com',
+     // to: process.env.CONTACT_TO,
       reply_to: email,
       subject: subject?.trim()
         ? `[AIRLEI Contact] ${subject}`
@@ -65,3 +66,4 @@ export default async function handler(req, res) {
     });
   }
 }
+
