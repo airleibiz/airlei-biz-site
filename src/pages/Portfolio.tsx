@@ -97,7 +97,7 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 2,
-      title: 'NamasStay',
+      title: 'NamaStay',
       thumbnail: "/images/NamasStay.png",
       video: "https://www.youtube.com/embed/uezxnGCS7kI",
       type: 'youtube'
