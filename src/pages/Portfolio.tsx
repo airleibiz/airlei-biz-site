@@ -72,7 +72,7 @@ const Portfolio: React.FC = () => {
     id: 1,
     title: 'AIRLEI AI STUDIO',
     thumbnail: "/images/AIRLEI AI STUDIO.png",
-    video: "https://www.youtube.com/embed/JqpQLN-eWiQ"
+    video: "https://drive.google.com/file/d/1Ficn5aSb2oFnOwRPhtlyfxVVsjRCx9tz/preview"
     },
     {
       id: 2,
