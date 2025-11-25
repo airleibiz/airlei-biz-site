@@ -47,8 +47,8 @@ export default async function handler(req, res) {
       // 先用 Resend 默认发件人，确保一定能发出去
       from: 'AIRLEI Website <contact@airlei.com>',
       // 🔴 调试第一步：这里可以直接先写死你的 Gmail
-      to: 'airleibiz@gmail.com',
-     // to: process.env.CONTACT_TO,
+      // to: 'airleibiz@gmail.com',
+      to: process.env.CONTACT_TO,
       reply_to: email,
       subject: subject?.trim()
         ? `[AIRLEI Contact] ${subject}`
@@ -66,4 +66,5 @@ export default async function handler(req, res) {
     });
   }
 }
+
 
