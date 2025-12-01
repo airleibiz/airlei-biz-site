@@ -293,13 +293,13 @@ const Home: React.FC = () => {
                 title: '孢生纪',
                 category: 'Animation',
                 thumbnail: '/images/cyberpunk.png',
-                videoUrl: '/videos/赛博-先导苏醒.mp4',
+                videoUrl: 'https://www.youtube.com/embed/b6Km9IvUKCo',
               },
               {
                 title: 'TRANSTYLE',
                 category: 'Restyle art and language',
                 thumbnail: '/images/转绘.png',
-                videoUrl: '/videos/转绘.mp4',
+                videoUrl: 'https://www.youtube.com/embed/VgzDmqmqaT4',
               },
             ];
 
