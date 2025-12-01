@@ -114,15 +114,15 @@ const Portfolio: React.FC = () => {
       title: 'PRODUCT',
       thumbnail: "/images/裤子B.png",
       // 先保留 Drive：点击后新开标签页
-      video: "https://drive.google.com/file/d/1c9pT1wHnjgzKtuAgX0u7PMShbM8PhqVU/preview",
-      type: 'drive'
+      video: "https://youtube.com/embed/T-EXWFCsEzo",
+      type: 'youtube'
     },
     {
       id: 5,
       title: 'TRANSTYLE',
       thumbnail: "/images/转绘.png",
-      video: "https://drive.google.com/file/d/1tsLY1Iyb6KF-RbOL9qJseyS7N2IP2XLs/preview",
-      type: 'drive'
+      video: "https://youtube.com/embed/VgzDmqmqaT4",
+      type: 'youtube'
     }
   ];
 
